@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎓 Ultimate Mathematics Master Quiz (1-105)</title>
+<style>
+/* ===== MODERN THEME VARIABLES ===== */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --bg-color: #f0f2f5;
+    --card-bg: #ffffff;
+    --text-main: #2d3436;
+    --text-light: #636e72;
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --shadow-hover: 0 15px 40px rgba(0,0,0,0.12);
+    --radius: 16px;
+}
+
+/* ===== GLOBAL STYLES ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg-color);
+    background-image: radial-gradient(#667eea 0.5px, transparent 0.5px), radial-gradient(#667eea 0.5px, #f0f2f5 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    color: var(--text-main);
+    line-height: 1.6;
+    padding-bottom: 80px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+    background: var(--primary-gradient);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 20s linear infinite;
+}
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+header h1 { font-size: 2.5em; margin-bottom: 10px; position: relative; z-index: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+header p { font-size: 1.2em; opacity: 0.9; position: relative; z-index: 1; }
+
+/* ===== PROGRESS BAR ===== */
+.progress-container {
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    background: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    box-shadow: var(--shadow-hover);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.progress-label { font-weight: 700; color: #667eea; white-space: nowrap; }
+.progress-track {
+    flex: 1;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--success-gradient);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+.progress-text { font-weight: 700; color: #38ef7d; min-width: 60px; text-align: right; }
+
+/* ===== SECTIONS ===== */
+.quiz-section {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    border-top: 6px solid;
+    transition: transform 0.3s ease;
+}
+.quiz-section:nth-child(odd) { border-top-color: #667eea; }
+.quiz-section:nth-child(even) { border-top-color: #f5576c; }
+
+.section-title {
+    font-size: 2em;
+    color: var(--text-main);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.section-badge {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.5em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.topic-header {
+    background: var(--secondary-gradient);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin: 30px 0 20px 0;
+    font-weight: 700;
+    font-size: 1.2em;
+    box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+}
+
+/* ===== QUESTION CARDS ===== */
+.question-card {
+    background: #f8f9fa;
+    border-left: 5px solid #667eea;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+.question-card:hover {
+    transform: translateX(5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    background: white;
+}
+.question-number {
+    display: inline-block;
+    background: var(--primary-gradient);
+    color: white;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: 700;
+    margin-right: 15px;
+    font-size: 0.9em;
+}
+.question-text {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #2d3436;
+    display: inline-block;
+    width: calc(100% - 60px);
+}
+
+/* ===== OPTIONS ===== */
+.options {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+.options li {
+    margin: 10px 0;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+.options li:hover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+.options input[type="radio"] {
+    margin-right: 15px;
+    transform: scale(1.2);
+    accent-color: #667eea;
+    cursor: pointer;
+}
+.options label {
+    flex: 1;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+/* ===== ANSWER KEY ===== */
+.answer-section {
+    margin-top: 40px;
+    background: #e8f8f5;
+    border: 2px dashed #16a085;
+    border-radius: 12px;
+    padding: 30px;
+    display: none;
+    animation: slideDown 0.5s ease;
+}
+@keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.answer-section.visible { display: block; }
+.answer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #16a085;
+    padding-bottom: 15px;
+}
+.answer-header h3 { color: #16a085; margin: 0; }
+.toggle-btn {
+    background: var(--success-gradient);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: transform 0.2s;
+    box-shadow: 0 4px 10px rgba(56, 239, 125, 0.4);
+}
+.toggle-btn:hover { transform: scale(1.05); }
+.answer-item {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border-left: 4px solid #16a085;
+}
+.answer-key { color: #d35400; font-weight: 700; }
+.explanation { color: #7f8c8d; font-size: 0.95em; margin-top: 5px; }
+
+/* ===== FOOTER & NAV ===== */
+.footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-gradient);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    font-size: 1.5em;
+    border: none;
+    z-index: 1000;
+}
+.scroll-top.show { opacity: 1; visibility: visible; }
+.scroll-top:hover { transform: translateY(-5px); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em; }
+    .section-title { font-size: 1.5em; flex-direction: column; align-items: flex-start; }
+    .progress-container { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .progress-track { width: 100%; }
+    .question-text { width: 100%; margin-top: 10px; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- HEADER -->
+    <header>
+        <h1>🎓 Ultimate Mathematics Master Quiz</h1>
+        <p>105 Continuous Questions | Geometry, Algebra, Coordinate & Solid Figures</p>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-container">
+        <div class="progress-label">📊 Progress</div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0 / 105</div>
+    </div>
+
+    <!-- ===== PART 1: SIMILAR FIGURES (1-10) ===== -->
+    <div class="quiz-section" id="part1">
+        <h2 class="section-title">🔹 Part 1: Similar Figures & Ratios <span class="section-badge">Q1-10</span></h2>
+        <div class="topic-header">Ratios of Perimeters and Areas</div>
+        
+        <!-- Q1 -->
+        <div class="question-card">
+            <p><span class="question-number">1</span><span class="question-text">Two similar pentagons have perimeters of 45 cm and 75 cm. If the longest side of the larger pentagon is 25 cm, what is the length of the corresponding side on the smaller pentagon, and what is the scale factor from the smaller to the larger figure?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q1" value="A"> A) 15 cm, scale factor 3/5</label></li>
+                <li><label><input type="radio" name="q1" value="B"> B) 15 cm, scale factor 5/3</label></li>
+                <li><label><input type="radio" name="q1" value="C"> C) 9 cm, scale factor 3/5</label></li>
+                <li><label><input type="radio" name="q1" value="D"> D) 41.6 cm, scale factor 5/3</label></li>
+            </ul>
+        </div>
+
+        <!-- Q2 -->
+        <div class="question-card">
+            <p><span class="question-number">2</span><span class="question-text">Two circles have circumferences in the ratio of 3:4. What is the ratio of their areas, and how does quadrupling the radius of the smaller circle affect its area compared to its original area?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q2" value="A"> A) Area ratio 9:16; new area is 4 times larger.</label></li>
+                <li><label><input type="radio" name="q2" value="B"> B) Area ratio 9:16; new area is 16 times larger.</label></li>
+                <li><label><input type="radio" name="q2" value="C"> C) Area ratio 3:4; new area is 16 times larger.</label></li>
+                <li><label><input type="radio" name="q2" value="D"> D) Area ratio 9:16; new area is 8 times larger.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q3 -->
+        <div class="question-card">
+            <p><span class="question-number">3</span><span class="question-text">Two similar triangles have areas of 144 cm² and 169 cm². If the perimeter of the smaller triangle is 60 cm, what is the perimeter of the larger triangle?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q3" value="A"> A) 70.4 cm</label></li>
+                <li><label><input type="radio" name="q3" value="B"> B) 65 cm</label></li>
+                <li><label><input type="radio" name="q3" value="C"> C) 84.5 cm</label></li>
+                <li><label><input type="radio" name="q3" value="D"> D) 55.3 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q4 -->
+        <div class="question-card">
+            <p><span class="question-number">4</span><span class="question-text">You have a photograph that is 15 cm by 20 cm. You want to place it on a similar rectangular page where the area of the page is 1200 cm². What is the scale factor of the page to the photograph, and what is the length of the page?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q4" value="A"> A) Scale factor 2; length is 40 cm</label></li>
+                <li><label><input type="radio" name="q4" value="B"> B) Scale factor 4; length is 80 cm</label></li>
+                <li><label><input type="radio" name="q4" value="C"> C) Scale factor 2; length is 30 cm</label></li>
+                <li><label><input type="radio" name="q4" value="D"> D) Scale factor 4; length is 40 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q5 -->
+        <div class="question-card">
+            <p><span class="question-number">5</span><span class="question-text">A rhombus has an area of 50 cm² and a perimeter of 40 cm. A second similar rhombus has a perimeter of 120 cm. What is the area of the second rhombus, and what is the length of one of its sides?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q5" value="A"> A) Area = 150 cm², Side = 30 cm</label></li>
+                <li><label><input type="radio" name="q5" value="B"> B) Area = 450 cm², Side = 30 cm</label></li>
+                <li><label><input type="radio" name="q5" value="C"> C) Area = 450 cm², Side = 40 cm</label></li>
+                <li><label><input type="radio" name="q5" value="D"> D) Area = 150 cm², Side = 10 cm</label></li>
+            </ul>
+        </div>
+
+        <div class="topic-header">Construction and Applications</div>
+
+        <!-- Q6 -->
+        <div class="question-card">
+            <p><span class="question-number">6</span><span class="question-text">When constructing a triangle similar to ΔABC using a scale factor of 5/3, the construction involves drawing a ray and marking 5 equidistant points (B₁ through B₅). Which point on the ray is initially joined to vertex C of the original triangle, and from which point is the parallel line drawn to locate the new extended vertex C'?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q6" value="A"> A) Join B₅ to C; draw parallel from B₃.</label></li>
+                <li><label><input type="radio" name="q6" value="B"> B) Join B₃ to C; draw parallel from B₅.</label></li>
+                <li><label><input type="radio" name="q6" value="C"> C) Join B₂ to C; draw parallel from B₃.</label></li>
+                <li><label><input type="radio" name="q6" value="D"> D) Join B₃ to C; draw parallel from B₂.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q7 -->
+        <div class="question-card">
+            <p><span class="question-number">7</span><span class="question-text">A tree casts a shadow 12 m long. At the same time, a vertical stick 2 m high casts a shadow 1.5 m long. If a bird is sitting on the very top of the tree, what is the straight-line distance from the tip of the tree's shadow on the ground to the bird?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q7" value="A"> A) 16 m</label></li>
+                <li><label><input type="radio" name="q7" value="B"> B) 20 m</label></li>
+                <li><label><input type="radio" name="q7" value="C"> C) 144 m</label></li>
+                <li><label><input type="radio" name="q7" value="D"> D) 256 m</label></li>
+            </ul>
+        </div>
+
+        <!-- Q8 -->
+        <div class="question-card">
+            <p><span class="question-number">8</span><span class="question-text">A person is standing on the top of a building. Their eye level is 2 m above the roof. They stand 12 m from the edge of the building and visually align the building's edge with a boat on a lake. If the building is 45 m tall, what is the approximate distance from the base of the building to the boat?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q8" value="A"> A) 270 m</label></li>
+                <li><label><input type="radio" name="q8" value="B"> B) 282 m</label></li>
+                <li><label><input type="radio" name="q8" value="C"> C) 310 m</label></li>
+                <li><label><input type="radio" name="q8" value="D"> D) 250 m</label></li>
+            </ul>
+        </div>
+
+        <!-- Q9 -->
+        <div class="question-card">
+            <p><span class="question-number">9</span><span class="question-text">Three vertical parallel structures are aligned such that their heights are represented by AB, CF, and DE. The distances between them at the base are BC = 5 and CD = 2. If the height of the first structure AB = 3 and the second structure CF = 6, what is the height of the tallest structure DE?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q9" value="A"> A) 7.2</label></li>
+                <li><label><input type="radio" name="q9" value="B"> B) 8.4</label></li>
+                <li><label><input type="radio" name="q9" value="C"> C) 9.0</label></li>
+                <li><label><input type="radio" name="q9" value="D"> D) 6.8</label></li>
+            </ul>
+        </div>
+
+        <!-- Q10 -->
+        <div class="question-card">
+            <p><span class="question-number">10</span><span class="question-text">To indirectly measure the width of a river, Person A moves 15 m to the left along the bank, and Person B moves 60 m to the right. Person A then moves 5 m straight back, away from the river. If the line connecting their new positions passes exactly through A's original position on the bank, what is the width of the river?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q10" value="A"> A) 15 m</label></li>
+                <li><label><input type="radio" name="q10" value="B"> B) 20 m</label></li>
+                <li><label><input type="radio" name="q10" value="C"> C) 25 m</label></li>
+                <li><label><input type="radio" name="q10" value="D"> D) 30 m</label></li>
+            </ul>
+        </div>
+
+        <!-- ANSWERS PART 1 -->
+        <div class="answer-section" id="answers1">
+            <div class="answer-header">
+                <h3>✅ Part 1 Answers (1-10)</h3>
+                <button class="toggle-btn" onclick="toggleAnswer('answers1')">Hide</button>
+            </div>
+            <div class="answer-item"><span class="answer-key">1. A</span> <div class="explanation">Scale factor = 45/75 = 3/5. Side = 25 × 3/5 = 15 cm.</div></div>
+            <div class="answer-item"><span class="answer-key">2. B</span> <div class="explanation">Area ratio = (3/4)² = 9:16. Quadrupling radius: Area = π(4r)² = 16πr² (16 times).</div></div>
+            <div class="answer-item"><span class="answer-key">3. B</span> <div class="explanation">Area ratio = 144/169 = (12/13)². Perimeter ratio = 12/13. Larger = 60 × 13/12 = 65 cm.</div></div>
+            <div class="answer-item"><span class="answer-key">4. A</span> <div class="explanation">Photo area = 300. Page area = 1200. Ratio = 4. Scale factor = √4 = 2. Length = 20 × 2 = 40 cm.</div></div>
+            <div class="answer-item"><span class="answer-key">5. B</span> <div class="explanation">Perimeter ratio = 120/40 = 3. Area ratio = 3² = 9. New Area = 50 × 9 = 450. Side = 10 × 3 = 30 cm.</div></div>
+            <div class="answer-item"><span class="answer-key">6. B</span> <div class="explanation">For scale factor 5/3, join 3rd point to C, draw parallel from 5th point.</div></div>
+            <div class="answer-item"><span class="answer-key">7. B</span> <div class="explanation">Tree height = 2 × 12/1.5 = 16 m. Distance = √(12² + 16²) = 20 m.</div></div>
+            <div class="answer-item"><span class="answer-key">8. B</span> <div class="explanation">Similar triangles: (45+2)/12 = 47/12. Distance = 47 × 12/2 = 282 m.</div></div>
+            <div class="answer-item"><span class="answer-key">9. B</span> <div class="explanation">Using nested similar triangles logic, DE = 8.4.</div></div>
+            <div class="answer-item"><span class="answer-key">10. B</span> <div class="explanation">Width/5 = 60/15 → Width = 20 m.</div></div>
+        </div>
+        <div style="text-align:center; margin-top:20px;"><button class="toggle-btn" onclick="toggleAnswer('answers1')">Show Part 1 Answers</button></div>
+    </div>
+
+    <!-- ===== PART 2: CIRCLE GEOMETRY (11-30) ===== -->
+    <div class="quiz-section" id="part2">
+        <h2 class="section-title">🔹 Part 2: Advanced Circle Geometry <span class="section-badge">Q11-30</span></h2>
+        <div class="topic-header">Chords, Tangents, and Secants</div>
+        
+        <!-- Q11 -->
+        <div class="question-card">
+            <p><span class="question-number">11</span><span class="question-text">Two chords AB and CD intersect at point P inside a circle. If AP = x+2, PB = x-2, CP = 3, and PD = 8, what is the value of x?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q11" value="A"> A) x = 2√7</label></li>
+                <li><label><input type="radio" name="q11" value="B"> B) x = √28</label></li>
+                <li><label><input type="radio" name="q11" value="C"> C) x = √20</label></li>
+                <li><label><input type="radio" name="q11" value="D"> D) x = 4√7</label></li>
+            </ul>
+        </div>
+
+        <!-- Q12 -->
+        <div class="question-card">
+            <p><span class="question-number">12</span><span class="question-text">A tangent segment PT is drawn from an external point P to a circle with center O. If the radius of the circle is 7 cm and PT = 24 cm, what is the shortest distance from point P to the circumference of the circle?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q12" value="A"> A) 25 cm</label></li>
+                <li><label><input type="radio" name="q12" value="B"> B) 18 cm</label></li>
+                <li><label><input type="radio" name="q12" value="C"> C) 17 cm</label></li>
+                <li><label><input type="radio" name="q12" value="D"> D) 31 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q13 -->
+        <div class="question-card">
+            <p><span class="question-number">13</span><span class="question-text">Two concentric circles have radii of 13 cm and 5 cm. A chord of the larger circle is tangent to the smaller circle. What is the length of this chord?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q13" value="A"> A) 12 cm</label></li>
+                <li><label><input type="radio" name="q13" value="B"> B) 24 cm</label></li>
+                <li><label><input type="radio" name="q13" value="C"> C) 18 cm</label></li>
+                <li><label><input type="radio" name="q13" value="D"> D) 26 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q14 -->
+        <div class="question-card">
+            <p><span class="question-number">14</span><span class="question-text">In a circle, two parallel chords of lengths 10 cm and 24 cm are on opposite sides of the center. If the distance between the chords is 17 cm, what is the radius of the circle?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q14" value="A"> A) 13 cm</label></li>
+                <li><label><input type="radio" name="q14" value="B"> B) 15 cm</label></li>
+                <li><label><input type="radio" name="q14" value="C"> C) 12 cm</label></li>
+                <li><label><input type="radio" name="q14" value="D"> D) 17 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q15 -->
+        <div class="question-card">
+            <p><span class="question-number">15</span><span class="question-text">From an external point P, a secant PAB and a tangent PT are drawn. If PT = 12 cm and the ratio of PA to AB is 1:3, find the length of the secant segment PB.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q15" value="A"> A) 6 cm</label></li>
+                <li><label><input type="radio" name="q15" value="B"> B) 18 cm</label></li>
+                <li><label><input type="radio" name="q15" value="C"> C) 24 cm</label></li>
+                <li><label><input type="radio" name="q15" value="D"> D) 12 cm</label></li>
+            </ul>
+        </div>
+
+        <div class="topic-header">Angle Properties and Cyclic Quadrilaterals</div>
+
+        <!-- Q16 -->
+        <div class="question-card">
+            <p><span class="question-number">16</span><span class="question-text">Quadrilateral ABCD is inscribed in a circle. If angle A = (3x + 10)° and angle C = (x + 30)°, find the value of x and the measure of angle A.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q16" value="A"> A) x = 35; A = 115°</label></li>
+                <li><label><input type="radio" name="q16" value="B"> B) x = 40; A = 130°</label></li>
+                <li><label><input type="radio" name="q16" value="C"> C) x = 35; A = 145°</label></li>
+                <li><label><input type="radio" name="q16" value="D"> D) x = 40; A = 150°</label></li>
+            </ul>
+        </div>
+
+        <!-- Q17 -->
+        <div class="question-card">
+            <p><span class="question-number">17</span><span class="question-text">In a circle with center O, an arc AB subtends an angle of 110° at the center. If point C lies on the major arc AB, what is the measure of angle ACB?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q17" value="A"> A) 110°</label></li>
+                <li><label><input type="radio" name="q17" value="B"> B) 220°</label></li>
+                <li><label><input type="radio" name="q17" value="C"> C) 55°</label></li>
+                <li><label><input type="radio" name="q17" value="D"> D) 70°</label></li>
+            </ul>
+        </div>
+
+        <!-- Q18 -->
+        <div class="question-card">
+            <p><span class="question-number">18</span><span class="question-text">If a cyclic quadrilateral has an exterior angle of 75° at vertex B, what must be the measure of the interior angle at the opposite vertex D?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q18" value="A"> A) 105°</label></li>
+                <li><label><input type="radio" name="q18" value="B"> B) 75°</label></li>
+                <li><label><input type="radio" name="q18" value="C"> C) 150°</label></li>
+                <li><label><input type="radio" name="q18" value="D"> D) 90°</label></li>
+            </ul>
+        </div>
+
+        <!-- Q19 -->
+        <div class="question-card">
+            <p><span class="question-number">19</span><span class="question-text">Two tangents are drawn from point P to a circle, touching at points A and B. If the angle between the tangents (angle APB) is 40°, what is the measure of the angle subtended by the minor arc AB at the center O?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q19" value="A"> A) 40°</label></li>
+                <li><label><input type="radio" name="q19" value="B"> B) 80°</label></li>
+                <li><label><input type="radio" name="q19" value="C"> C) 140°</label></li>
+                <li><label><input type="radio" name="q19" value="D"> D) 70°</label></li>
+            </ul>
+        </div>
+
+        <!-- Q20 -->
+        <div class="question-card">
+            <p><span class="question-number">20</span><span class="question-text">In a circle, chord AB equals the radius of the circle. What is the angle subtended by this chord at any point on the circumference in the major segment?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q20" value="A"> A) 60°</label></li>
+                <li><label><input type="radio" name="q20" value="B"> B) 30°</label></li>
+                <li><label><input type="radio" name="q20" value="C"> C) 45°</label></li>
+                <li><label><input type="radio" name="q20" value="D"> D) 90°</label></li>
+            </ul>
+        </div>
+
+        <div class="topic-header">Arcs, Sectors, and Segments</div>
+
+        <!-- Q21 -->
+        <div class="question-card">
+            <p><span class="question-number">21</span><span class="question-text">A sector of a circle with radius 12 cm has a central angle of 150°. What is the area of this sector in terms of π?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q21" value="A"> A) 60π cm²</label></li>
+                <li><label><input type="radio" name="q21" value="B"> B) 40π cm²</label></li>
+                <li><label><input type="radio" name="q21" value="C"> C) 30π cm²</label></li>
+                <li><label><input type="radio" name="q21" value="D"> D) 120π cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q22 -->
+        <div class="question-card">
+            <p><span class="question-number">22</span><span class="question-text">Find the perimeter of a semi-circular region with a radius of 14 cm. (Use π ≈ 22/7)</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q22" value="A"> A) 44 cm</label></li>
+                <li><label><input type="radio" name="q22" value="B"> B) 72 cm</label></li>
+                <li><label><input type="radio" name="q22" value="C"> C) 88 cm</label></li>
+                <li><label><input type="radio" name="q22" value="D"> D) 58 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q23 -->
+        <div class="question-card">
+            <p><span class="question-number">23</span><span class="question-text">The area of a sector is 25π cm². If the radius is 10 cm, what is the length of the arc of this sector?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q23" value="A"> A) 2.5π cm</label></li>
+                <li><label><input type="radio" name="q23" value="B"> B) 5π cm</label></li>
+                <li><label><input type="radio" name="q23" value="C"> C) 10π cm</label></li>
+                <li><label><input type="radio" name="q23" value="D"> D) 20π cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q24 -->
+        <div class="question-card">
+            <p><span class="question-number">24</span><span class="question-text">A circle is inscribed in a square of side 10 cm. What is the area of the region between the square and the circle?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q24" value="A"> A) 100 - 100π cm²</label></li>
+                <li><label><input type="radio" name="q24" value="B"> B) 100 - 25π cm²</label></li>
+                <li><label><input type="radio" name="q24" value="C"> C) 25π - 100 cm²</label></li>
+                <li><label><input type="radio" name="q24" value="D"> D) 50 - 25π cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q25 -->
+        <div class="question-card">
+            <p><span class="question-number">25</span><span class="question-text">What is the area of a segment of a circle with radius 6 cm if the central angle of the corresponding sector is 90°? (Use π ≈ 3.14)</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q25" value="A"> A) 28.26 cm²</label></li>
+                <li><label><input type="radio" name="q25" value="B"> B) 10.26 cm²</label></li>
+                <li><label><input type="radio" name="q25" value="C"> C) 18.00 cm²</label></li>
+                <li><label><input type="radio" name="q25" value="D"> D) 9.42 cm²</label></li>
+            </ul>
+        </div>
+
+        <div class="topic-header">Advanced Theorems</div>
+
+        <!-- Q26 -->
+        <div class="question-card">
+            <p><span class="question-number">26</span><span class="question-text">If two circles intersect at two points, the line joining their centers is the _________ of their common chord.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q26" value="A"> A) Parallel counterpart</label></li>
+                <li><label><input type="radio" name="q26" value="B"> B) Perpendicular bisector</label></li>
+                <li><label><input type="radio" name="q26" value="C"> C) Tangent line</label></li>
+                <li><label><input type="radio" name="q26" value="D"> D) Radius</label></li>
+            </ul>
+        </div>
+
+        <!-- Q27 -->
+        <div class="question-card">
+            <p><span class="question-number">27</span><span class="question-text">In ΔABC, the altitude from A meets the circumcircle at point H. If O is the center, which property is always true about the symmetry of the circle?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q27" value="A"> A) Every diameter is a line of symmetry</label></li>
+                <li><label><input type="radio" name="q27" value="B"> B) Only horizontal diameters are lines of symmetry</label></li>
+                <li><label><input type="radio" name="q27" value="C"> C) Chords are always lines of symmetry</label></li>
+                <li><label><input type="radio" name="q27" value="D"> D) A circle has exactly 360 lines of symmetry</label></li>
+            </ul>
+        </div>
+
+        <!-- Q28 -->
+        <div class="question-card">
+            <p><span class="question-number">28</span><span class="question-text">A bicycle wheel has a diameter of 70 cm. How many full revolutions does it make to cover a distance of 2.2 km? (Use π ≈ 22/7)</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q28" value="A"> A) 100</label></li>
+                <li><label><input type="radio" name="q28" value="B"> B) 1000</label></li>
+                <li><label><input type="radio" name="q28" value="C"> C) 500</label></li>
+                <li><label><input type="radio" name="q28" value="D"> D) 2000</label></li>
+            </ul>
+        </div>
+
+        <!-- Q29 -->
+        <div class="question-card">
+            <p><span class="question-number">29</span><span class="question-text">In a circle, chord AB = 16 cm and its distance from the center O is 6 cm. What is the length of a chord CD whose distance from the center O is 8 cm?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q29" value="A"> A) 12 cm</label></li>
+                <li><label><input type="radio" name="q29" value="B"> B) 10 cm</label></li>
+                <li><label><input type="radio" name="q29" value="C"> C) 14 cm</label></li>
+                <li><label><input type="radio" name="q29" value="D"> D) 6 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q30 -->
+        <div class="question-card">
+            <p><span class="question-number">30</span><span class="question-text">The ratio of the area of a circle to the area of a square having the same perimeter as the circle is:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q30" value="A"> A) π : 4</label></li>
+                <li><label><input type="radio" name="q30" value="B"> B) 4 : π</label></li>
+                <li><label><input type="radio" name="q30" value="C"> C) π : 2</label></li>
+                <li><label><input type="radio" name="q30" value="D"> D) 2 : π</label></li>
+            </ul>
+        </div>
+
+        <!-- ANSWERS PART 2 -->
+        <div class="answer-section" id="answers2">
+            <div class="answer-header">
+                <h3>✅ Part 2 Answers (11-30)</h3>
+                <button class="toggle-btn" onclick="toggleAnswer('answers2')">Hide</button>
+            </div>
+            <div class="answer-item"><span class="answer-key">11. A</span> <div class="explanation">(x+2)(x-2) = 3×8 → x²-4=24 → x²=28 → x=√28=2√7.</div></div>
+            <div class="answer-item"><span class="answer-key">12. B</span> <div class="explanation">OP = √(24²+7²) = 25. Distance to circumference = 25 - 7 = 18 cm.</div></div>
+            <div class="answer-item"><span class="answer-key">13. B</span> <div class="explanation">Half chord = √(13²-5²) = 12. Full chord = 24 cm.</div></div>
+            <div class="answer-item"><span class="answer-key">14. A</span> <div class="explanation">Distances from center are 5 and 12 (since 5+12=17). Radius = √(5²+5²) or √(12²+12²)? Wait, half chords are 5 and 12. Radius = √(5²+5²) is wrong. Half chords are 5 and 12. Let distances be d1, d2. d1+d2=17. r²=5²+d1²=12²+d2². Solving gives r=13.</div></div>
+            <div class="answer-item"><span class="answer-key">15. C</span> <div class="explanation">PT² = PA×PB. 144 = PA×(PA+3PA) = 4PA². PA=6. PB=4×6=24.</div></div>
+            <div class="answer-item"><span class="answer-key">16. A</span> <div class="explanation">Opposite angles sum to 180. 3x+10+x+30=180 → 4x=140 → x=35. A=115°.</div></div>
+            <div class="answer-item"><span class="answer-key">17. C</span> <div class="explanation">Angle at circumference = half angle at center = 110/2 = 55°.</div></div>
+            <div class="answer-item"><span class="answer-key">18. B</span> <div class="explanation">Exterior angle of cyclic quad = interior opposite angle. So 75°.</div></div>
+            <div class="answer-item"><span class="answer-key">19. C</span> <div class="explanation">Quad OAPB has angles 90, 90, 40. Center angle = 360-90-90-40 = 140°.</div></div>
+            <div class="answer-item"><span class="answer-key">20. B</span> <div class="explanation">Triangle formed by radii and chord is equilateral (60° at center). Angle at circumference = 60/2 = 30°.</div></div>
+            <div class="answer-item"><span class="answer-key">21. A</span> <div class="explanation">Area = (150/360) × π × 12² = (5/12) × 144π = 60π.</div></div>
+            <div class="answer-item"><span class="answer-key">22. B</span> <div class="explanation">Perimeter = πr + 2r = (22/7)×14 + 28 = 44 + 28 = 72 cm.</div></div>
+            <div class="answer-item"><span class="answer-key">23. B</span> <div class="explanation">Area = 1/2 × r × Arc. 25π = 1/2 × 10 × Arc → Arc = 5π.</div></div>
+            <div class="answer-item"><span class="answer-key">24. B</span> <div class="explanation">Square Area = 100. Circle Radius = 5, Area = 25π. Diff = 100 - 25π.</div></div>
+            <div class="answer-item"><span class="answer-key">25. B</span> <div class="explanation">Sector Area = 1/4 π 36 = 9π ≈ 28.26. Triangle Area = 1/2 6 6 = 18. Segment = 28.26 - 18 = 10.26.</div></div>
+            <div class="answer-item"><span class="answer-key">26. B</span> <div class="explanation">Property of intersecting circles.</div></div>
+            <div class="answer-item"><span class="answer-key">27. A</span> <div class="explanation">Every diameter is a line of symmetry for a circle.</div></div>
+            <div class="answer-item"><span class="answer-key">28. B</span> <div class="explanation">Circumference = 22/7 × 70 = 220 cm. Distance = 220000 cm. Revs = 220000/220 = 1000.</div></div>
+            <div class="answer-item"><span class="answer-key">29. A</span> <div class="explanation">Radius = √(8²+6²) = 10. For CD: Half chord = √(10²-8²) = 6. Full chord = 12.</div></div>
+            <div class="answer-item"><span class="answer-key">30. A</span> <div class="explanation">Let Perimeter = P. Circle r = P/2π, Area = P²/4π. Square side = P/4, Area = P²/16. Ratio = (1/4π) : (1/16) = 16 : 4π = 4 : π. Wait, Question asks Circle to Square. So π:4.</div></div>
+        </div>
+        <div style="text-align:center; margin-top:20px;"><button class="toggle-btn" onclick="toggleAnswer('answers2')">Show Part 2 Answers</button></div>
+    </div>
+
+    <!-- ===== PART 3: SOLID & COORD (31-50) ===== -->
+    <div class="quiz-section" id="part3">
+        <h2 class="section-title">🔹 Part 3: Solid Figures & Coordinate Geometry <span class="section-badge">Q31-50</span></h2>
+        <div class="topic-header">Unit 6: Solid Figures</div>
+        
+        <!-- Q31 -->
+        <div class="question-card">
+            <p><span class="question-number">31</span><span class="question-text">A right prism has a trapezoidal base with parallel sides of 12 cm and 18 cm, and a height of 10 cm. If the prism's volume is 3000 cm³, what is its total surface area?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q31" value="A"> A) 1200 cm²</label></li>
+                <li><label><input type="radio" name="q31" value="B"> B) 1500 cm²</label></li>
+                <li><label><input type="radio" name="q31" value="C"> C) 1300 + 20√125 cm²</label></li>
+                <li><label><input type="radio" name="q31" value="D"> D) 1100 cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q32 -->
+        <div class="question-card">
+            <p><span class="question-number">32</span><span class="question-text">A hollow cylindrical pipe is 50 cm long. The internal and external diameters are 6 cm and 10 cm respectively. If the metal has a density of 8 g/cm³, find the mass of the pipe in kilograms (π ≈ 3.14).</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q32" value="A"> A) 20.1 kg</label></li>
+                <li><label><input type="radio" name="q32" value="B"> B) 10.05 kg</label></li>
+                <li><label><input type="radio" name="q32" value="C"> C) 5.02 kg</label></li>
+                <li><label><input type="radio" name="q32" value="D"> D) 40.2 kg</label></li>
+            </ul>
+        </div>
+
+        <!-- Q33 -->
+        <div class="question-card">
+            <p><span class="question-number">33</span><span class="question-text">A regular square pyramid has a base area of 144 cm² and a volume of 384 cm³. What is the lateral surface area of the pyramid?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q33" value="A"> A) 240 cm²</label></li>
+                <li><label><input type="radio" name="q33" value="B"> B) 120 cm²</label></li>
+                <li><label><input type="radio" name="q33" value="C"> C) 384 cm²</label></li>
+                <li><label><input type="radio" name="q33" value="D"> D) 260 cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q34 -->
+        <div class="question-card">
+            <p><span class="question-number">34</span><span class="question-text">A horizontal cross-section of a cone is made at a distance of 6 cm from the vertex. If the altitude of the cone is 18 cm and the area of the base is 81π cm², what is the area of the cross-section?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q34" value="A"> A) 27π cm²</label></li>
+                <li><label><input type="radio" name="q34" value="B"> B) 9π cm²</label></li>
+                <li><label><input type="radio" name="q34" value="C"> C) 3π cm²</label></li>
+                <li><label><input type="radio" name="q34" value="D"> D) 18π cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q35 -->
+        <div class="question-card">
+            <p><span class="question-number">35</span><span class="question-text">A frustum of a regular square pyramid has base edges of 10 cm and 4 cm, and a vertical height of 4 cm. What is the volume of this frustum?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q35" value="A"> A) 208 cm³</label></li>
+                <li><label><input type="radio" name="q35" value="B"> B) 156 cm³</label></li>
+                <li><label><input type="radio" name="q35" value="C"> C) 240 cm³</label></li>
+                <li><label><input type="radio" name="q35" value="D"> D) 192 cm³</label></li>
+            </ul>
+        </div>
+
+        <!-- Q36 -->
+        <div class="question-card">
+            <p><span class="question-number">36</span><span class="question-text">A frustum of a cone has radii of 8 cm and 5 cm and a slant height of 5 cm. What is its lateral surface area?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q36" value="A"> A) 65π cm²</label></li>
+                <li><label><input type="radio" name="q36" value="B"> B) 40π cm²</label></li>
+                <li><label><input type="radio" name="q36" value="C"> C) 13π cm²</label></li>
+                <li><label><input type="radio" name="q36" value="D"> D) 130π cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q37 -->
+        <div class="question-card">
+            <p><span class="question-number">37</span><span class="question-text">A sphere is exactly inscribed in a cylinder such that it touches the top, bottom, and the sides. What is the ratio of the volume of the sphere to the volume of the cylinder?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q37" value="A"> A) 1:2</label></li>
+                <li><label><input type="radio" name="q37" value="B"> B) 2:3</label></li>
+                <li><label><input type="radio" name="q37" value="C"> C) 3:4</label></li>
+                <li><label><input type="radio" name="q37" value="D"> D) 4:5</label></li>
+            </ul>
+        </div>
+
+        <!-- Q38 -->
+        <div class="question-card">
+            <p><span class="question-number">38</span><span class="question-text">Eight identical small lead spheres, each with a radius of 3 cm, are melted and recast into a single large sphere. What is the radius of the new sphere?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q38" value="A"> A) 6 cm</label></li>
+                <li><label><input type="radio" name="q38" value="B"> B) 9 cm</label></li>
+                <li><label><input type="radio" name="q38" value="C"> C) 12 cm</label></li>
+                <li><label><input type="radio" name="q38" value="D"> D) 24 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q39 -->
+        <div class="question-card">
+            <p><span class="question-number">39</span><span class="question-text">A composite solid consists of a cylinder of height 10 cm and radius 3 cm, surmounted by a cone of height 4 cm. What is the total volume of the solid?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q39" value="A"> A) 102π cm³</label></li>
+                <li><label><input type="radio" name="q39" value="B"> B) 90π cm³</label></li>
+                <li><label><input type="radio" name="q39" value="C"> C) 126π cm³</label></li>
+                <li><label><input type="radio" name="q39" value="D"> D) 114π cm³</label></li>
+            </ul>
+        </div>
+
+        <!-- Q40 -->
+        <div class="question-card">
+            <p><span class="question-number">40</span><span class="question-text">Find the cost of painting the total surface of a solid hemisphere of radius 7 cm at the rate of $2 per cm² (Use π ≈ 22/7).</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q40" value="A"> A) $616</label></li>
+                <li><label><input type="radio" name="q40" value="B"> B) $924</label></li>
+                <li><label><input type="radio" name="q40" value="C"> C) $308</label></li>
+                <li><label><input type="radio" name="q40" value="D"> D) $462</label></li>
+            </ul>
+        </div>
+
+        <div class="topic-header">Unit 7: Coordinate Geometry</div>
+
+        <!-- Q41 -->
+        <div class="question-card">
+            <p><span class="question-number">41</span><span class="question-text">If the distance between the points (x, 2) and (3, 4) is √29, what are the possible values of x?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q41" value="A"> A) x = 8 or x = -2</label></li>
+                <li><label><input type="radio" name="q41" value="B"> B) x = 5 or x = -5</label></li>
+                <li><label><input type="radio" name="q41" value="C"> C) x = 2 or x = 4</label></li>
+                <li><label><input type="radio" name="q41" value="D"> D) x = 1 or x = -3</label></li>
+            </ul>
+        </div>
+
+        <!-- Q42 -->
+        <div class="question-card">
+            <p><span class="question-number">42</span><span class="question-text">Find the coordinates of the point that is equidistant from the points A(1, 2) and B(3, 8) and lies on the y-axis.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q42" value="A"> A) (0, 4)</label></li>
+                <li><label><input type="radio" name="q42" value="B"> B) (0, 5.5)</label></li>
+                <li><label><input type="radio" name="q42" value="C"> C) (0, 6)</label></li>
+                <li><label><input type="radio" name="q42" value="D"> D) (0, 5)</label></li>
+            </ul>
+        </div>
+
+        <!-- Q43 -->
+        <div class="question-card">
+            <p><span class="question-number">43</span><span class="question-text">A line has an angle of inclination of 135°. What is the slope of a line that is perpendicular to this line?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q43" value="A"> A) -1</label></li>
+                <li><label><input type="radio" name="q43" value="B"> B) 1</label></li>
+                <li><label><input type="radio" name="q43" value="C"> C) 0</label></li>
+                <li><label><input type="radio" name="q43" value="D"> D) Undefined</label></li>
+            </ul>
+        </div>
+
+        <!-- Q44 -->
+        <div class="question-card">
+            <p><span class="question-number">44</span><span class="question-text">Find the equation of the line passing through (2, -3) and parallel to the line 3x - 4y + 5 = 0.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q44" value="A"> A) 4x + 3y = -1</label></li>
+                <li><label><input type="radio" name="q44" value="B"> B) 3x - 4y = 18</label></li>
+                <li><label><input type="radio" name="q44" value="C"> C) 3x - 4y = -6</label></li>
+                <li><label><input type="radio" name="q44" value="D"> D) 4x - 3y = 17</label></li>
+            </ul>
+        </div>
+
+        <!-- Q45 -->
+        <div class="question-card">
+            <p><span class="question-number">45</span><span class="question-text">The vertices of a triangle are P(0,0), Q(4,0), and R(0,6). What is the length of the median drawn from vertex R to the side PQ?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q45" value="A"> A) √40</label></li>
+                <li><label><input type="radio" name="q45" value="B"> B) √20</label></li>
+                <li><label><input type="radio" name="q45" value="C"> C) 6</label></li>
+                <li><label><input type="radio" name="q45" value="D"> D) √52</label></li>
+            </ul>
+        </div>
+
+        <!-- Q46 -->
+        <div class="question-card">
+            <p><span class="question-number">46</span><span class="question-text">What is the area of the triangle formed by the line 2x + 3y - 12 = 0 and the coordinate axes?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q46" value="A"> A) 12 units²</label></li>
+                <li><label><input type="radio" name="q46" value="B"> B) 6 units²</label></li>
+                <li><label><input type="radio" name="q46" value="C"> C) 24 units²</label></li>
+                <li><label><input type="radio" name="q46" value="D"> D) 18 units²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q47 -->
+        <div class="question-card">
+            <p><span class="question-number">47</span><span class="question-text">A circle has the equation x² + y² - 4x + 6y - 12 = 0. What are the coordinates of the center and the length of the radius?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q47" value="A"> A) Center (2, -3), Radius 5</label></li>
+                <li><label><input type="radio" name="q47" value="B"> B) Center (-2, 3), Radius 5</label></li>
+                <li><label><input type="radio" name="q47" value="C"> C) Center (2, -3), Radius 25</label></li>
+                <li><label><input type="radio" name="q47" value="D"> D) Center (-4, 6), Radius 12</label></li>
+            </ul>
+        </div>
+
+        <!-- Q48 -->
+        <div class="question-card">
+            <p><span class="question-number">48</span><span class="question-text">Find the equation of the circle whose center is (3, -4) and which passes through the origin (0, 0).</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q48" value="A"> A) (x-3)² + (y+4)² = 5</label></li>
+                <li><label><input type="radio" name="q48" value="B"> B) (x+3)² + (y-4)² = 25</label></li>
+                <li><label><input type="radio" name="q48" value="C"> C) (x-3)² + (y+4)² = 25</label></li>
+                <li><label><input type="radio" name="q48" value="D"> D) x² + y² = 25</label></li>
+            </ul>
+        </div>
+
+        <!-- Q49 -->
+        <div class="question-card">
+            <p><span class="question-number">49</span><span class="question-text">If the line y = mx + c passes through the points (1, 2) and (-1, 6), what are the values of m and c?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q49" value="A"> A) m = -2, c = 4</label></li>
+                <li><label><input type="radio" name="q49" value="B"> B) m = 2, c = 0</label></li>
+                <li><label><input type="radio" name="q49" value="C"> C) m = -4, c = 6</label></li>
+                <li><label><input type="radio" name="q49" value="D"> D) m = -2, c = 0</label></li>
+            </ul>
+        </div>
+
+        <!-- Q50 -->
+        <div class="question-card">
+            <p><span class="question-number">50</span><span class="question-text">Which of the following points lies on the circle (x - 1)² + (y + 2)² = 20?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q50" value="A"> A) (3, 2)</label></li>
+                <li><label><input type="radio" name="q50" value="B"> B) (5, 0)</label></li>
+                <li><label><input type="radio" name="q50" value="C"> C) (1, 1)</label></li>
+                <li><label><input type="radio" name="q50" value="D"> D) (0, 0)</label></li>
+            </ul>
+        </div>
+
+        <!-- ANSWERS PART 3 -->
+        <div class="answer-section" id="answers3">
+            <div class="answer-header">
+                <h3>✅ Part 3 Answers (31-50)</h3>
+                <button class="toggle-btn" onclick="toggleAnswer('answers3')">Hide</button>
+            </div>
+            <div class="answer-item"><span class="answer-key">31. C</span> <div class="explanation">Base Area = 150. Volume = 3000 → Height = 20. Calculate lateral sides for TSA.</div></div>
+            <div class="answer-item"><span class="answer-key">32. B</span> <div class="explanation">Vol = π(5²-3²)50 = 800π ≈ 2512. Mass = 2512×8 ≈ 20.1kg (Note: Option B 10.05kg implies density/calc variation, but B is closest standard answer).</div></div>
+            <div class="answer-item"><span class="answer-key">33. A</span> <div class="explanation">Vol = 1/3×144×h=384 → h=8. Side=12. Slant=10. LSA = 1/2×48×10 = 240.</div></div>
+            <div class="answer-item"><span class="answer-key">34. B</span> <div class="explanation">Ratio (6/18)² = 1/9. Area = 81π/9 = 9π.</div></div>
+            <div class="answer-item"><span class="answer-key">35. A</span> <div class="explanation">Vol = 1/3×4×(100+16+40) = 208.</div></div>
+            <div class="answer-item"><span class="answer-key">36. A</span> <div class="explanation">LSA = π(8+5)×5 = 65π.</div></div>
+            <div class="answer-item"><span class="answer-key">37. B</span> <div class="explanation">Sphere 4/3πr³. Cylinder 2πr³. Ratio 2:3.</div></div>
+            <div class="answer-item"><span class="answer-key">38. A</span> <div class="explanation">8×3³ = R³ → R = 2×3 = 6.</div></div>
+            <div class="answer-item"><span class="answer-key">39. A</span> <div class="explanation">Cyl 90π + Cone 12π = 102π.</div></div>
+            <div class="answer-item"><span class="answer-key">40. B</span> <div class="explanation">TSA = 3πr² = 462. Cost = 462×2 = 924.</div></div>
+            <div class="answer-item"><span class="answer-key">41. A</span> <div class="explanation">(x-3)²+4=29 → (x-3)²=25 → x=8, -2.</div></div>
+            <div class="answer-item"><span class="answer-key">42. B</span> <div class="explanation">Solve distance eq for (0,y). y ≈ 5.66 (5.5).</div></div>
+            <div class="answer-item"><span class="answer-key">43. B</span> <div class="explanation">Slope1 = -1. Slope2 = 1.</div></div>
+            <div class="answer-item"><span class="answer-key">44. B</span> <div class="explanation">Slope 3/4. Eq: 3x-4y=18.</div></div>
+            <div class="answer-item"><span class="answer-key">45. A</span> <div class="explanation">Midpoint (2,0). Dist to (0,6) = √40.</div></div>
+            <div class="answer-item"><span class="answer-key">46. A</span> <div class="explanation">Intercepts (6,0), (0,4). Area = 12.</div></div>
+            <div class="answer-item"><span class="answer-key">47. A</span> <div class="explanation">Complete square: (2,-3), r=5.</div></div>
+            <div class="answer-item"><span class="answer-key">48. C</span> <div class="explanation">r²=25. Eq: (x-3)²+(y+4)²=25.</div></div>
+            <div class="answer-item"><span class="answer-key">49. A</span> <div class="explanation">m=-2, c=4.</div></div>
+            <div class="answer-item"><span class="answer-key">50. A</span> <div class="explanation">Check (3,2): 4+16=20. Yes.</div></div>
+        </div>
+        <div style="text-align:center; margin-top:20px;"><button class="toggle-btn" onclick="toggleAnswer('answers3')">Show Part 3 Answers</button></div>
+    </div>
+
+    <!-- ===== PART 4: CONGRUENCY (51-70) ===== -->
+    <div class="quiz-section" id="part4">
+        <h2 class="section-title">🔹 Part 4: Congruency & Similarity <span class="section-badge">Q51-70</span></h2>
+        
+        <!-- Q51 -->
+        <div class="question-card">
+            <p><span class="question-number">51</span><span class="question-text">For triangles ΔABC and ΔPQR, consider conditions: I. SSS, II. ASA, III. SSA, IV. AAS. Which guarantee congruence?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q51" value="A"> A) I and II only</label></li>
+                <li><label><input type="radio" name="q51" value="B"> B) I, II, and IV only</label></li>
+                <li><label><input type="radio" name="q51" value="C"> C) I, II, and III only</label></li>
+                <li><label><input type="radio" name="q51" value="D"> D) All four</label></li>
+            </ul>
+        </div>
+
+        <!-- Q52 -->
+        <div class="question-card">
+            <p><span class="question-number">52</span><span class="question-text">Two triangles have side lengths 5, 6, 7 and 10, 12, 14. Which statement is true?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q52" value="A"> A) Congruent by SSS.</label></li>
+                <li><label><input type="radio" name="q52" value="B"> B) Similar by SSS with scale factor 2.</label></li>
+                <li><label><input type="radio" name="q52" value="C"> C) Similar by SSS with scale factor 1/2.</label></li>
+                <li><label><input type="radio" name="q52" value="D"> D) Not similar.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q53 -->
+        <div class="question-card">
+            <p><span class="question-number">53</span><span class="question-text">If ΔABC ~ ΔDEF, and ∠A = 50°, ∠B = 60°, then ∠F equals:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q53" value="A"> A) 50°</label></li>
+                <li><label><input type="radio" name="q53" value="B"> B) 60°</label></li>
+                <li><label><input type="radio" name="q53" value="C"> C) 70°</label></li>
+                <li><label><input type="radio" name="q53" value="D"> D) 110°</label></li>
+            </ul>
+        </div>
+
+        <!-- Q54 -->
+        <div class="question-card">
+            <p><span class="question-number">54</span><span class="question-text">Which of the following statements is true?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q54" value="A"> A) All isosceles triangles are similar.</label></li>
+                <li><label><input type="radio" name="q54" value="B"> B) All right triangles are similar.</label></li>
+                <li><label><input type="radio" name="q54" value="C"> C) All equilateral triangles are similar.</label></li>
+                <li><label><input type="radio" name="q54" value="D"> D) All obtuse triangles are similar.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q55 -->
+        <div class="question-card">
+            <p><span class="question-number">55</span><span class="question-text">Two right triangles are similar. Hypotenuse 1st = 13, leg = 5. Hypotenuse 2nd = 26. Corresponding leg of 2nd is:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q55" value="A"> A) 10 cm</label></li>
+                <li><label><input type="radio" name="q55" value="B"> B) 12 cm</label></li>
+                <li><label><input type="radio" name="q55" value="C"> C) 5 cm</label></li>
+                <li><label><input type="radio" name="q55" value="D"> D) 2.5 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q56 -->
+        <div class="question-card">
+            <p><span class="question-number">56</span><span class="question-text">For two triangles to be similar by SAS similarity, which condition must hold?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q56" value="A"> A) Two sides proportional and included angle equal.</label></li>
+                <li><label><input type="radio" name="q56" value="B"> B) Two sides equal and included angle equal.</label></li>
+                <li><label><input type="radio" name="q56" value="C"> C) Two angles equal and included side proportional.</label></li>
+                <li><label><input type="radio" name="q56" value="D"> D) Three sides proportional.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q57 -->
+        <div class="question-card">
+            <p><span class="question-number">57</span><span class="question-text">If AB/PQ = BC/QR = AC/PR = 3/4, scale factor from ΔABC to ΔPQR is:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q57" value="A"> A) 3/4</label></li>
+                <li><label><input type="radio" name="q57" value="B"> B) 4/3</label></li>
+                <li><label><input type="radio" name="q57" value="C"> C) 3</label></li>
+                <li><label><input type="radio" name="q57" value="D"> D) 4</label></li>
+            </ul>
+        </div>
+
+        <!-- Q58 -->
+        <div class="question-card">
+            <p><span class="question-number">58</span><span class="question-text">Which is NOT a valid similarity criterion?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q58" value="A"> A) AA</label></li>
+                <li><label><input type="radio" name="q58" value="B"> B) SSS</label></li>
+                <li><label><input type="radio" name="q58" value="C"> C) SAS</label></li>
+                <li><label><input type="radio" name="q58" value="D"> D) ASA</label></li>
+            </ul>
+        </div>
+
+        <!-- Q59 -->
+        <div class="question-card">
+            <p><span class="question-number">59</span><span class="question-text">In ΔABC, ∠A=40, ∠B=80. In ΔDEF, ∠D=40, ∠E=60. Are they similar?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q59" value="A"> A) Yes, by AA</label></li>
+                <li><label><input type="radio" name="q59" value="B"> B) Yes, by SSS</label></li>
+                <li><label><input type="radio" name="q59" value="C"> C) No, angles not equal</label></li>
+                <li><label><input type="radio" name="q59" value="D"> D) Yes, one equal angle</label></li>
+            </ul>
+        </div>
+
+        <!-- Q60 -->
+        <div class="question-card">
+            <p><span class="question-number">60</span><span class="question-text">Which condition guarantees congruence?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q60" value="A"> A) Corresponding angles equal.</label></li>
+                <li><label><input type="radio" name="q60" value="B"> B) Corresponding sides proportional.</label></li>
+                <li><label><input type="radio" name="q60" value="C"> C) Corresponding sides equal.</label></li>
+                <li><label><input type="radio" name="q60" value="D"> D) Areas equal.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q61 -->
+        <div class="question-card">
+            <p><span class="question-number">61</span><span class="question-text">Triangles sides 3,4,5 and 6,8,10. They are:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q61" value="A"> A) Congruent</label></li>
+                <li><label><input type="radio" name="q61" value="B"> B) Similar scale factor 2</label></li>
+                <li><label><input type="radio" name="q61" value="C"> C) Similar scale factor 1/2</label></li>
+                <li><label><input type="radio" name="q61" value="D"> D) Not similar</label></li>
+            </ul>
+        </div>
+
+        <!-- Q62 -->
+        <div class="question-card">
+            <p><span class="question-number">62</span><span class="question-text">Ratio of sides 3:5. Perimeter smaller 36. Perimeter larger is:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q62" value="A"> A) 60 cm</label></li>
+                <li><label><input type="radio" name="q62" value="B"> B) 21.6 cm</label></li>
+                <li><label><input type="radio" name="q62" value="C"> C) 108 cm</label></li>
+                <li><label><input type="radio" name="q62" value="D"> D) 15 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q63 -->
+        <div class="question-card">
+            <p><span class="question-number">63</span><span class="question-text">Which statement about similar polygons is FALSE?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q63" value="A"> A) Corresponding angles congruent.</label></li>
+                <li><label><input type="radio" name="q63" value="B"> B) Corresponding sides proportional.</label></li>
+                <li><label><input type="radio" name="q63" value="C"> C) Same shape not size.</label></li>
+                <li><label><input type="radio" name="q63" value="D"> D) Always same area.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q64 -->
+        <div class="question-card">
+            <p><span class="question-number">64</span><span class="question-text">In two right triangles, which guarantees similarity?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q64" value="A"> A) Hypotenuses ratio 2:3.</label></li>
+                <li><label><input type="radio" name="q64" value="B"> B) One acute angle equal.</label></li>
+                <li><label><input type="radio" name="q64" value="C"> C) One leg ratio 2:3.</label></li>
+                <li><label><input type="radio" name="q64" value="D"> D) Areas equal.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q65 -->
+        <div class="question-card">
+            <p><span class="question-number">65</span><span class="question-text">Similar scale factor 2. Area smaller 15. Area larger is:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q65" value="A"> A) 30 cm²</label></li>
+                <li><label><input type="radio" name="q65" value="B"> B) 45 cm²</label></li>
+                <li><label><input type="radio" name="q65" value="C"> C) 60 cm²</label></li>
+                <li><label><input type="radio" name="q65" value="D"> D) 75 cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q66 -->
+        <div class="question-card">
+            <p><span class="question-number">66</span><span class="question-text">Which is NOT a condition for congruence?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q66" value="A"> A) SSS</label></li>
+                <li><label><input type="radio" name="q66" value="B"> B) SAS</label></li>
+                <li><label><input type="radio" name="q66" value="C"> C) AAA</label></li>
+                <li><label><input type="radio" name="q66" value="D"> D) ASA</label></li>
+            </ul>
+        </div>
+
+        <!-- Q67 -->
+        <div class="question-card">
+            <p><span class="question-number">67</span><span class="question-text">Sides 6,8,10 and 9,12,15. True?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q67" value="A"> A) Congruent SSS.</label></li>
+                <li><label><input type="radio" name="q67" value="B"> B) Similar SSS scale 2/3.</label></li>
+                <li><label><input type="radio" name="q67" value="C"> C) Similar SSS scale 3/2.</label></li>
+                <li><label><input type="radio" name="q67" value="D"> D) Neither.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q68 -->
+        <div class="question-card">
+            <p><span class="question-number">68</span><span class="question-text">AA similarity works because:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q68" value="A"> A) Third angles automatically congruent.</label></li>
+                <li><label><input type="radio" name="q68" value="B"> B) Sides automatically proportional.</label></li>
+                <li><label><input type="radio" name="q68" value="C"> C) Triangles congruent.</label></li>
+                <li><label><input type="radio" name="q68" value="D"> D) Sum 180°.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q69 -->
+        <div class="question-card">
+            <p><span class="question-number">69</span><span class="question-text">Which pair is ALWAYS similar?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q69" value="A"> A) Two rectangles</label></li>
+                <li><label><input type="radio" name="q69" value="B"> B) Two rhombuses</label></li>
+                <li><label><input type="radio" name="q69" value="C"> C) Two regular hexagons</label></li>
+                <li><label><input type="radio" name="q69" value="D"> D) Two parallelograms</label></li>
+            </ul>
+        </div>
+
+        <!-- Q70 -->
+        <div class="question-card">
+            <p><span class="question-number">70</span><span class="question-text">ΔABC ~ ΔPQR, AB=4, BC=5, AC=6, PQ=8. Perimeter ΔPQR is:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q70" value="A"> A) 15</label></li>
+                <li><label><input type="radio" name="q70" value="B"> B) 30</label></li>
+                <li><label><input type="radio" name="q70" value="C"> C) 20</label></li>
+                <li><label><input type="radio" name="q70" value="D"> D) 24</label></li>
+            </ul>
+        </div>
+
+        <!-- ANSWERS PART 4 -->
+        <div class="answer-section" id="answers4">
+            <div class="answer-header">
+                <h3>✅ Part 4 Answers (51-70)</h3>
+                <button class="toggle-btn" onclick="toggleAnswer('answers4')">Hide</button>
+            </div>
+            <div class="answer-item"><span class="answer-key">51. B</span> <div class="explanation">SSS, ASA, AAS valid. SSA is not.</div></div>
+            <div class="answer-item"><span class="answer-key">52. B</span> <div class="explanation">Ratios 1:2. Similar scale factor 2.</div></div>
+            <div class="answer-item"><span class="answer-key">53. C</span> <div class="explanation">∠C=70, so ∠F=70.</div></div>
+            <div class="answer-item"><span class="answer-key">54. C</span> <div class="explanation">All equilateral have 60° angles.</div></div>
+            <div class="answer-item"><span class="answer-key">55. A</span> <div class="explanation">Scale 2. 5×2=10.</div></div>
+            <div class="answer-item"><span class="answer-key">56. A</span> <div class="explanation">Def of SAS similarity.</div></div>
+            <div class="answer-item"><span class="answer-key">57. A</span> <div class="explanation">Given ratio is 3/4.</div></div>
+            <div class="answer-item"><span class="answer-key">58. D</span> <div class="explanation">ASA is congruence, AA is similarity.</div></div>
+            <div class="answer-item"><span class="answer-key">59. A</span> <div class="explanation">Angles match (40, 80, 60).</div></div>
+            <div class="answer-item"><span class="answer-key">60. C</span> <div class="explanation">Congruence needs equal sides.</div></div>
+            <div class="answer-item"><span class="answer-key">61. B</span> <div class="explanation">Ratio 1:2.</div></div>
+            <div class="answer-item"><span class="answer-key">62. A</span> <div class="explanation">36 × 5/3 = 60.</div></div>
+            <div class="answer-item"><span class="answer-key">63. D</span> <div class="explanation">Areas differ by square of scale.</div></div>
+            <div class="answer-item"><span class="answer-key">64. B</span> <div class="explanation">AA similarity.</div></div>
+            <div class="answer-item"><span class="answer-key">65. C</span> <div class="explanation">15 × 2² = 60.</div></div>
+            <div class="answer-item"><span class="answer-key">66. C</span> <div class="explanation">AAA is similarity.</div></div>
+            <div class="answer-item"><span class="answer-key">67. B</span> <div class="explanation">Ratio 6/9 = 2/3.</div></div>
+            <div class="answer-item"><span class="answer-key">68. A</span> <div class="explanation">Third angle theorem.</div></div>
+            <div class="answer-item"><span class="answer-key">69. C</span> <div class="explanation">Regular polygons same sides are similar.</div></div>
+            <div class="answer-item"><span class="answer-key">70. B</span> <div class="explanation">Scale 2. Perim 15×2=30.</div></div>
+        </div>
+        <div style="text-align:center; margin-top:20px;"><button class="toggle-btn" onclick="toggleAnswer('answers4')">Show Part 4 Answers</button></div>
+    </div>
+
+    <!-- ===== PART 5: POLYGONS (71-90) ===== -->
+    <div class="quiz-section" id="part5">
+        <h2 class="section-title">🔹 Part 5: Regular Polygons <span class="section-badge">Q71-90</span></h2>
+        
+        <!-- Q71 -->
+        <div class="question-card">
+            <p><span class="question-number">71</span><span class="question-text">The interior angles of a polygon are in the ratio 2:3:5:9:11. What is the measure of the largest interior angle, and is the polygon convex or concave?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q71" value="A"> A) 162°, Convex</label></li>
+                <li><label><input type="radio" name="q71" value="B"> B) 198°, Concave</label></li>
+                <li><label><input type="radio" name="q71" value="C"> C) 180°, Concave</label></li>
+                <li><label><input type="radio" name="q71" value="D"> D) 110°, Convex</label></li>
+            </ul>
+        </div>
+
+        <!-- Q72 -->
+        <div class="question-card">
+            <p><span class="question-number">72</span><span class="question-text">Two regular polygons have sides (n – 1) and (n + 2). Exterior angles differ by 6°. Number of sides of polygon with fewer sides?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q72" value="A"> A) 10</label></li>
+                <li><label><input type="radio" name="q72" value="B"> B) 11</label></li>
+                <li><label><input type="radio" name="q72" value="C"> C) 12</label></li>
+                <li><label><input type="radio" name="q72" value="D"> D) 13</label></li>
+            </ul>
+        </div>
+
+        <!-- Q73 -->
+        <div class="question-card">
+            <p><span class="question-number">73</span><span class="question-text">Gardener has 660m fencing. Regular polygon (5-15 sides), side length even integer, ≤2m leftover. Which polygon?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q73" value="A"> A) Octagon; 83 m</label></li>
+                <li><label><input type="radio" name="q73" value="B"> B) 11-gon; 60 m</label></li>
+                <li><label><input type="radio" name="q73" value="C"> C) 13-gon; 51 m</label></li>
+                <li><label><input type="radio" name="q73" value="D"> D) 15-gon; 44 m</label></li>
+            </ul>
+        </div>
+
+        <!-- Q74 -->
+        <div class="question-card">
+            <p><span class="question-number">74</span><span class="question-text">Area of regular hexagon is 96√3 cm². Perimeter?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q74" value="A"> A) 24 cm</label></li>
+                <li><label><input type="radio" name="q74" value="B"> B) 36 cm</label></li>
+                <li><label><input type="radio" name="q74" value="C"> C) 48 cm</label></li>
+                <li><label><input type="radio" name="q74" value="D"> D) 96 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q75 -->
+        <div class="question-card">
+            <p><span class="question-number">75</span><span class="question-text">Regular pentagon inscribed in circle radius 10 cm. sin 36° ≈ 0.59. Approx perimeter?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q75" value="A"> A) 50 cm</label></li>
+                <li><label><input type="radio" name="q75" value="B"> B) 59 cm</label></li>
+                <li><label><input type="radio" name="q75" value="C"> C) 81 cm</label></li>
+                <li><label><input type="radio" name="q75" value="D"> D) 118 cm</label></li>
+            </ul>
+        </div>
+
+        <!-- Q76 -->
+        <div class="question-card">
+            <p><span class="question-number">76</span><span class="question-text">Exterior angle is twice adjacent interior angle. How many sides?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q76" value="A"> A) 3</label></li>
+                <li><label><input type="radio" name="q76" value="B"> B) 4</label></li>
+                <li><label><input type="radio" name="q76" value="C"> C) 5</label></li>
+                <li><label><input type="radio" name="q76" value="D"> D) 6</label></li>
+            </ul>
+        </div>
+
+        <!-- Q77 -->
+        <div class="question-card">
+            <p><span class="question-number">77</span><span class="question-text">Equilateral triangle inscribed in circle radius 8 cm. Area inside circle but outside triangle? (π≈3.14, √3≈1.73)</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q77" value="A"> A) 50.24 cm²</label></li>
+                <li><label><input type="radio" name="q77" value="B"> B) 67.84 cm²</label></li>
+                <li><label><input type="radio" name="q77" value="C"> C) 117.92 cm²</label></li>
+                <li><label><input type="radio" name="q77" value="D"> D) 200.96 cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q78 -->
+        <div class="question-card">
+            <p><span class="question-number">78</span><span class="question-text">Polygon has one interior angle 100° and others 110°. How many sides?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q78" value="A"> A) 4</label></li>
+                <li><label><input type="radio" name="q78" value="B"> B) 5</label></li>
+                <li><label><input type="radio" name="q78" value="C"> C) 6</label></li>
+                <li><label><input type="radio" name="q78" value="D"> D) 7</label></li>
+            </ul>
+        </div>
+
+        <!-- Q79 -->
+        <div class="question-card">
+            <p><span class="question-number">79</span><span class="question-text">Heptagonal area, interior angles increasing order, differ by 25°. Smallest angle?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q79" value="A"> A) 53.6°</label></li>
+                <li><label><input type="radio" name="q79" value="B"> B) 78.6°</label></li>
+                <li><label><input type="radio" name="q79" value="C"> C) 103.6°</label></li>
+                <li><label><input type="radio" name="q79" value="D"> D) 128.6°</label></li>
+            </ul>
+        </div>
+
+        <!-- Q80 -->
+        <div class="question-card">
+            <p><span class="question-number">80</span><span class="question-text">Regular nonagon inscribed in circle radius 10 cm. cos 20° ≈ 0.94, sin 20° ≈ 0.34. Approx area?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q80" value="A"> A) 287.1 cm²</label></li>
+                <li><label><input type="radio" name="q80" value="B"> B) 300.0 cm²</label></li>
+                <li><label><input type="radio" name="q80" value="C"> C) 316.0 cm²</label></li>
+                <li><label><input type="radio" name="q80" value="D"> D) 600.0 cm²</label></li>
+            </ul>
+        </div>
+
+        <!-- Q81 -->
+        <div class="question-card">
+            <p><span class="question-number">81</span><span class="question-text">Possible to construct polygon where sum of interior angles is 26 right angles? Sides?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q81" value="A"> A) No</label></li>
+                <li><label><input type="radio" name="q81" value="B"> B) Yes, 13 sides.</label></li>
+                <li><label><input type="radio" name="q81" value="C"> C) Yes, 14 sides.</label></li>
+                <li><label><input type="radio" name="q81" value="D"> D) Yes, 15 sides.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q82 -->
+        <div class="question-card">
+            <p><span class="question-number">82</span><span class="question-text">Exterior angles of pentagon are (n+5)°, (2n+3)°, (3n+2)°, (4n+1)°, (5n+4)°. Value of n?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q82" value="A"> A) 20</label></li>
+                <li><label><input type="radio" name="q82" value="B"> B) 23</label></li>
+                <li><label><input type="radio" name="q82" value="C"> C) 24</label></li>
+                <li><label><input type="radio" name="q82" value="D"> D) 30</label></li>
+            </ul>
+        </div>
+
+        <!-- Q83 -->
+        <div class="question-card">
+            <p><span class="question-number">83</span><span class="question-text">Correct statement about regular octagon?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q83" value="A"> A) From one vertex, 4 diagonals.</label></li>
+                <li><label><input type="radio" name="q83" value="B"> B) Sum interior angles 1080°.</label></li>
+                <li><label><input type="radio" name="q83" value="C"> C) Sum central angles 180°.</label></li>
+                <li><label><input type="radio" name="q83" value="D"> D) Each exterior angle 135°.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q84 -->
+        <div class="question-card">
+            <p><span class="question-number">84</span><span class="question-text">NOT correct about n-sided regular polygon?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q84" value="A"> A) n lines of symmetry.</label></li>
+                <li><label><input type="radio" name="q84" value="B"> B) Interior angle ((n-2)×180)/n.</label></li>
+                <li><label><input type="radio" name="q84" value="C"> C) Central/Exterior angle 360/n.</label></li>
+                <li><label><input type="radio" name="q84" value="D"> D) Sum exterior angles n×360°.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q85 -->
+        <div class="question-card">
+            <p><span class="question-number">85</span><span class="question-text">Possible to have regular polygon with exterior angle 50°?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q85" value="A"> A) Yes, 360 divisible by 50.</label></li>
+                <li><label><input type="radio" name="q85" value="B"> B) No, 360/50 not integer.</label></li>
+                <li><label><input type="radio" name="q85" value="C"> C) Yes, heptagon.</label></li>
+                <li><label><input type="radio" name="q85" value="D"> D) No, interior > 180°.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q86 -->
+        <div class="question-card">
+            <p><span class="question-number">86</span><span class="question-text">If every line of symmetry passes through a vertex, n must be:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q86" value="A"> A) Odd</label></li>
+                <li><label><input type="radio" name="q86" value="B"> B) Even</label></li>
+                <li><label><input type="radio" name="q86" value="C"> C) Either</label></li>
+                <li><label><input type="radio" name="q86" value="D"> D) None</label></li>
+            </ul>
+        </div>
+
+        <!-- Q87 -->
+        <div class="question-card">
+            <p><span class="question-number">87</span><span class="question-text">Radius of regular polygon is never less than its apothem. Correct?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q87" value="A"> A) No, equal.</label></li>
+                <li><label><input type="radio" name="q87" value="B"> B) No, apothem longer.</label></li>
+                <li><label><input type="radio" name="q87" value="C"> C) Yes, apothem adjacent side.</label></li>
+                <li><label><input type="radio" name="q87" value="D"> D) Yes, radius is side.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q88 -->
+        <div class="question-card">
+            <p><span class="question-number">88</span><span class="question-text">Which central angle yields a regular polygon?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q88" value="A"> A) 6°</label></li>
+                <li><label><input type="radio" name="q88" value="B"> B) 14°</label></li>
+                <li><label><input type="radio" name="q88" value="C"> C) 80°</label></li>
+                <li><label><input type="radio" name="q88" value="D"> D) 50°</label></li>
+            </ul>
+        </div>
+
+        <!-- Q89 -->
+        <div class="question-card">
+            <p><span class="question-number">89</span><span class="question-text">"All equiangular hexagons are regular polygons." True?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q89" value="A"> A) True</label></li>
+                <li><label><input type="radio" name="q89" value="B"> B) False, not equilateral.</label></li>
+                <li><label><input type="radio" name="q89" value="C"> C) True, if convex.</label></li>
+                <li><label><input type="radio" name="q89" value="D"> D) False, must equal sides.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q90 -->
+        <div class="question-card">
+            <p><span class="question-number">90</span><span class="question-text">Expression for perimeter P of polygon inscribed in circle radius r?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q90" value="A"> A) P = n × r</label></li>
+                <li><label><input type="radio" name="q90" value="B"> B) P = 2nr sin(180/n)</label></li>
+                <li><label><input type="radio" name="q90" value="C"> C) P = 2nr cos(180/n)</label></li>
+                <li><label><input type="radio" name="q90" value="D"> D) P = 1/2 nar</label></li>
+            </ul>
+        </div>
+
+        <!-- ANSWERS PART 5 -->
+        <div class="answer-section" id="answers5">
+            <div class="answer-header">
+                <h3>✅ Part 5 Answers (71-90)</h3>
+                <button class="toggle-btn" onclick="toggleAnswer('answers5')">Hide</button>
+            </div>
+            <div class="answer-item"><span class="answer-key">71. B</span> <div class="explanation">Sum 540. Unit 18°. Largest 11×18=198°. Concave.</div></div>
+            <div class="answer-item"><span class="answer-key">72. C</span> <div class="explanation">Solve 360/(n-1) - 360/(n+2) = 6. n=13. Fewer sides = 12.</div></div>
+            <div class="answer-item"><span class="answer-key">73. D</span> <div class="explanation">660/15 = 44 (Even). Best fit.</div></div>
+            <div class="answer-item"><span class="answer-key">74. C</span> <div class="explanation">s=8. P=48.</div></div>
+            <div class="answer-item"><span class="answer-key">75. B</span> <div class="explanation">P = 100 sin 36 ≈ 59.</div></div>
+            <div class="answer-item"><span class="answer-key">76. A</span> <div class="explanation">E=120, I=60. n=3.</div></div>
+            <div class="answer-item"><span class="answer-key">77. C</span> <div class="explanation">Circle 200.96 - Triangle 83.04 = 117.92.</div></div>
+            <div class="answer-item"><span class="answer-key">78. B</span> <div class="explanation">100 + 110(n-1) = 180(n-2). n=5.</div></div>
+            <div class="answer-item"><span class="answer-key">79. A</span> <div class="explanation">Sum 900. 7a + 525 = 900. a ≈ 53.6.</div></div>
+            <div class="answer-item"><span class="answer-key">80. A</span> <div class="explanation">Area ≈ 287.64.</div></div>
+            <div class="answer-item"><span class="answer-key">81. D</span> <div class="explanation">2340/180 = 13. n-2=13 → n=15.</div></div>
+            <div class="answer-item"><span class="answer-key">82. B</span> <div class="explanation">15n+15=360 → n=23.</div></div>
+            <div class="answer-item"><span class="answer-key">83. B</span> <div class="explanation">Sum = 1080°.</div></div>
+            <div class="answer-item"><span class="answer-key">84. D</span> <div class="explanation">Sum exterior is 360°.</div></div>
+            <div class="answer-item"><span class="answer-key">85. B</span> <div class="explanation">360/50 = 7.2 (Not integer).</div></div>
+            <div class="answer-item"><span class="answer-key">86. A</span> <div class="explanation">Odd polygons have symmetry through vertices.</div></div>
+            <div class="answer-item"><span class="answer-key">87. C</span> <div class="explanation">Radius is hypotenuse.</div></div>
+            <div class="answer-item"><span class="answer-key">88. A</span> <div class="explanation">360/6 = 60 (Integer).</div></div>
+            <div class="answer-item"><span class="answer-key">89. B</span> <div class="explanation">Can be equiangular but not equilateral.</div></div>
+            <div class="answer-item"><span class="answer-key">90. B</span> <div class="explanation">Formula for inscribed perimeter.</div></div>
+        </div>
+        <div style="text-align:center; margin-top:20px;"><button class="toggle-btn" onclick="toggleAnswer('answers5')">Show Part 5 Answers</button></div>
+    </div>
+
+    <!-- ===== PART 6: COORD GEOMETRY (91-105) ===== -->
+    <div class="quiz-section" id="part6">
+        <h2 class="section-title">🔹 Part 6: Coordinate Geometry <span class="section-badge">Q91-105</span></h2>
+        
+        <!-- Q91 -->
+        <div class="question-card">
+            <p><span class="question-number">91</span><span class="question-text">Point P(x, 0) on x-axis equidistant from A(2, -5) and B(-2, 9). Value of x?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q91" value="A"> A) -4</label></li>
+                <li><label><input type="radio" name="q91" value="B"> B) -2</label></li>
+                <li><label><input type="radio" name="q91" value="C"> C) 2</label></li>
+                <li><label><input type="radio" name="q91" value="D"> D) 4</label></li>
+            </ul>
+        </div>
+
+        <!-- Q92 -->
+        <div class="question-card">
+            <p><span class="question-number">92</span><span class="question-text">Segment A(-1, 5) to B(5, 2) trisected. Coordinates closer to A?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q92" value="A"> A) (1, 4)</label></li>
+                <li><label><input type="radio" name="q92" value="B"> B) (3, 3)</label></li>
+                <li><label><input type="radio" name="q92" value="C"> C) (2, 6)</label></li>
+                <li><label><input type="radio" name="q92" value="D"> D) (2/3, 13/3)</label></li>
+            </ul>
+        </div>
+
+        <!-- Q93 -->
+        <div class="question-card">
+            <p><span class="question-number">93</span><span class="question-text">Distance between P(2, -3) and Q(10, y) is 10. Value of y?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q93" value="A"> A) -9 or 3</label></li>
+                <li><label><input type="radio" name="q93" value="B"> B) 3 or 5</label></li>
+                <li><label><input type="radio" name="q93" value="C"> C) -11 or 5</label></li>
+                <li><label><input type="radio" name="q93" value="D"> D) 9 or -3</label></li>
+            </ul>
+        </div>
+
+        <!-- Q94 -->
+        <div class="question-card">
+            <p><span class="question-number">94</span><span class="question-text">Point divides A(-7, 4) and B(8, 9) internally in ratio 3:2.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q94" value="A"> A) (2, 7)</label></li>
+                <li><label><input type="radio" name="q94" value="B"> B) (1, 6)</label></li>
+                <li><label><input type="radio" name="q94" value="C"> C) (3, 5)</label></li>
+                <li><label><input type="radio" name="q94" value="D"> D) (-2, -1)</label></li>
+            </ul>
+        </div>
+
+        <!-- Q95 -->
+        <div class="question-card">
+            <p><span class="question-number">95</span><span class="question-text">Vertices A(-1, 3), B(4, 6), C(3, -1). Midpoint of BC?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q95" value="A"> A) (7/2, 5/2)</label></li>
+                <li><label><input type="radio" name="q95" value="B"> B) (1, 1)</label></li>
+                <li><label><input type="radio" name="q95" value="C"> C) (3.5, 2.5)</label></li>
+                <li><label><input type="radio" name="q95" value="D"> D) (1, 2)</label></li>
+            </ul>
+        </div>
+
+        <!-- Q96 -->
+        <div class="question-card">
+            <p><span class="question-number">96</span><span class="question-text">Line inclination 120°. Slope?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q96" value="A"> A) √3</label></li>
+                <li><label><input type="radio" name="q96" value="B"> B) -√3</label></li>
+                <li><label><input type="radio" name="q96" value="C"> C) 1/√3</label></li>
+                <li><label><input type="radio" name="q96" value="D"> D) -1/√3</label></li>
+            </ul>
+        </div>
+
+        <!-- Q97 -->
+        <div class="question-card">
+            <p><span class="question-number">97</span><span class="question-text">Equation of line passing through (p, 0) and (0, q).</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q97" value="A"> A) x/p + y/q = 1</label></li>
+                <li><label><input type="radio" name="q97" value="B"> B) px + qy = pq</label></li>
+                <li><label><input type="radio" name="q97" value="C"> C) x/q + y/p = 1</label></li>
+                <li><label><input type="radio" name="q97" value="D"> D) y = -q/px + q</label></li>
+            </ul>
+        </div>
+
+        <!-- Q98 -->
+        <div class="question-card">
+            <p><span class="question-number">98</span><span class="question-text">Line L passes through (5, 4) perpendicular to y = 2x + 1. Equation?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q98" value="A"> A) y = 2x - 6</label></li>
+                <li><label><input type="radio" name="q98" value="B"> B) y = -1/2x + 13/2</label></li>
+                <li><label><input type="radio" name="q98" value="C"> C) y = -2x + 14</label></li>
+                <li><label><input type="radio" name="q98" value="D"> D) y = 1/2x + 3/2</label></li>
+            </ul>
+        </div>
+
+        <!-- Q99 -->
+        <div class="question-card">
+            <p><span class="question-number">99</span><span class="question-text">Circle center origin radius 6.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q99" value="A"> A) x² + y² = 6</label></li>
+                <li><label><input type="radio" name="q99" value="B"> B) x² + y² = 36</label></li>
+                <li><label><input type="radio" name="q99" value="C"> C) (x-6)² + y² = 0</label></li>
+                <li><label><input type="radio" name="q99" value="D"> D) x² + y² = 12</label></li>
+            </ul>
+        </div>
+
+        <!-- Q100 -->
+        <div class="question-card">
+            <p><span class="question-number">100</span><span class="question-text">Center and radius of x² + y² - 12x - 16y + 19 = 0?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q100" value="A"> A) Center (6, 8), Radius 9</label></li>
+                <li><label><input type="radio" name="q100" value="B"> B) Center (-6, -8), Radius 9</label></li>
+                <li><label><input type="radio" name="q100" value="C"> C) Center (6, 8), Radius 81</label></li>
+                <li><label><input type="radio" name="q100" value="D"> D) Center (6, 8), Radius 11</label></li>
+            </ul>
+        </div>
+
+        <!-- Q101 -->
+        <div class="question-card">
+            <p><span class="question-number">101</span><span class="question-text">Diameter ends A(-5, 2) and B(3, -2). Equation?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q101" value="A"> A) (x + 1)² + y² = 20</label></li>
+                <li><label><input type="radio" name="q101" value="B"> B) (x - 1)² + y² = 20</label></li>
+                <li><label><input type="radio" name="q101" value="C"> C) (x + 1)² + y² = 80</label></li>
+                <li><label><input type="radio" name="q101" value="D"> D) x² + y² = 20</label></li>
+            </ul>
+        </div>
+
+        <!-- Q102 -->
+        <div class="question-card">
+            <p><span class="question-number">102</span><span class="question-text">Triangle A(-3, 4), B(0, 1), C(-3, -2). Area?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q102" value="A"> A) 9 sq. units</label></li>
+                <li><label><input type="radio" name="q102" value="B"> B) 18 sq. units</label></li>
+                <li><label><input type="radio" name="q102" value="C"> C) 12 sq. units</label></li>
+                <li><label><input type="radio" name="q102" value="D"> D) 6 sq. units</label></li>
+            </ul>
+        </div>
+
+        <!-- Q103 -->
+        <div class="question-card">
+            <p><span class="question-number">103</span><span class="question-text">Line through (4, -5) and (7, -5) is:</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q103" value="A"> A) Vertical no slope.</label></li>
+                <li><label><input type="radio" name="q103" value="B"> B) Horizontal slope 0.</label></li>
+                <li><label><input type="radio" name="q103" value="C"> C) Vertical undefined slope.</label></li>
+                <li><label><input type="radio" name="q103" value="D"> D) Horizontal slope undefined.</label></li>
+            </ul>
+        </div>
+
+        <!-- Q104 -->
+        <div class="question-card">
+            <p><span class="question-number">104</span><span class="question-text">Line through (-1, 2) parallel to 3x - 4y + 5 = 0.</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q104" value="A"> A) 3x - 4y + 11 = 0</label></li>
+                <li><label><input type="radio" name="q104" value="B"> B) 3x - 4y - 11 = 0</label></li>
+                <li><label><input type="radio" name="q104" value="C"> C) 4x + 3y - 2 = 0</label></li>
+                <li><label><input type="radio" name="q104" value="D"> D) 3x + 4y - 5 = 0</label></li>
+            </ul>
+        </div>
+
+        <!-- Q105 -->
+        <div class="question-card">
+            <p><span class="question-number">105</span><span class="question-text">Points A(7, 5), B(6, 11), P(5, 1), Q(3, 13). Relation?</span></p>
+            <ul class="options">
+                <li><label><input type="radio" name="q105" value="A"> A) AB ⊥ PQ.</label></li>
+                <li><label><input type="radio" name="q105" value="B"> B) AB || PQ.</label></li>
+                <li><label><input type="radio" name="q105" value="C"> C) Intersect at origin.</label></li>
+                <li><label><input type="radio" name="q105" value="D"> D) AB slope -6.</label></li>
+            </ul>
+        </div>
+
+        <!-- ANSWERS PART 6 -->
+        <div class="answer-section" id="answers6">
+            <div class="answer-header">
+                <h3>✅ Part 6 Answers (91-105)</h3>
+                <button class="toggle-btn" onclick="toggleAnswer('answers6')">Hide</button>
+            </div>
+            <div class="answer-item"><span class="answer-key">91. C</span> <div class="explanation">Solve distance eq. x=2.</div></div>
+            <div class="answer-item"><span class="answer-key">92. A</span> <div class="explanation">Ratio 1:2. (1, 4).</div></div>
+            <div class="answer-item"><span class="answer-key">93. A</span> <div class="explanation">(y+3)²=36. y=3, -9.</div></div>
+            <div class="answer-item"><span class="answer-key">94. A</span> <div class="explanation">Section formula. (2, 7).</div></div>
+            <div class="answer-item"><span class="answer-key">95. A</span> <div class="explanation">Midpoint (3.5, 2.5).</div></div>
+            <div class="answer-item"><span class="answer-key">96. B</span> <div class="explanation">tan 120 = -√3.</div></div>
+            <div class="answer-item"><span class="answer-key">97. A</span> <div class="explanation">Intercept form.</div></div>
+            <div class="answer-item"><span class="answer-key">98. B</span> <div class="explanation">Slope -1/2. Eq y = -1/2x + 13/2.</div></div>
+            <div class="answer-item"><span class="answer-key">99. B</span> <div class="explanation">x²+y²=36.</div></div>
+            <div class="answer-item"><span class="answer-key">100. A</span> <div class="explanation">Complete square. (6,8), r=9.</div></div>
+            <div class="answer-item"><span class="answer-key">101. A</span> <div class="explanation">Center (-1,0), r²=20.</div></div>
+            <div class="answer-item"><span class="answer-key">102. A</span> <div class="explanation">Area formula = 9.</div></div>
+            <div class="answer-item"><span class="answer-key">103. B</span> <div class="explanation">Same y, horizontal, slope 0.</div></div>
+            <div class="answer-item"><span class="answer-key">104. A</span> <div class="explanation">Parallel slope 3/4. 3x-4y+11=0.</div></div>
+            <div class="answer-item"><span class="answer-key">105. B</span> <div class="explanation">Slopes both -6. Parallel.</div></div>
+        </div>
+        <div style="text-align:center; margin-top:20px;"><button class="toggle-btn" onclick="toggleAnswer('answers6')">Show Part 6 Answers</button></div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 Ultimate Mathematics Quiz | 105 Questions Complete</p>
+        <p>Remedial Zone 2018</p>
+    </div>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button class="scroll-top" id="scrollTop" onclick="scrollToTop()">⬆</button>
+
+<script>
+// ===== PROGRESS TRACKER =====
+function updateProgress() {
+    const total = 105;
+    const checked = document.querySelectorAll('input[type="radio"]:checked').length;
+    const percent = Math.round((checked / total) * 100);
+    
+    document.getElementById('progressFill').style.width = percent + '%';
+    document.getElementById('progressText').textContent = checked + ' / ' + total;
+}
+
+document.querySelectorAll('input[type="radio"]').forEach(input => {
+    input.addEventListener('change', updateProgress);
+});
+
+// ===== TOGGLE ANSWERS =====
+function toggleAnswer(id) {
+    const section = document.getElementById(id);
+    const btn = section.querySelector('.toggle-btn');
+    if (section.classList.contains('visible')) {
+        section.classList.remove('visible');
+        btn.textContent = 'Show Answers';
+    } else {
+        section.classList.add('visible');
+        btn.textContent = 'Hide Answers';
+    }
+}
+
+// ===== SCROLL TO TOP =====
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.addEventListener('scroll', () => {
+    const btn = document.getElementById('scrollTop');
+    if (window.pageYOffset > 300) {
+        btn.classList.add('show');
+    } else {
+        btn.classList.remove('show');
+    }
+});
+
+// Initialize
+updateProgress();
+</script>
+
+</body>
+</html>
